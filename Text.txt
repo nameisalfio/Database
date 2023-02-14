@@ -1,0 +1,124 @@
+Gara (citta, 
+Biglietto (prezzo,
+
++---------------+           +-------------------+           +--------------+
+|     Athlete   |           |      Team         |           |    Event     |
++---------------+           +-------------------+           +--------------+
+| - AthleteID   |           | - TeamID          |           | - EventID    |
+| - FirstName   |           | - TeamName        |           | - EventName  |
+| - LastName    |           | - CoachName       |           | - Date       |
+| - Birthdate   |           | - Establishment   |           | - Location   |
++---------------+           +-------------------+           +--------------+
+                        1                                  N
+                        |                                  |
+                        |                                  |
+                        |                                  |
+                        V                                  V
+               +-------------------+           +-------------------+
+               |      Plays       |           |   Participates   |
+               +-------------------+           +-------------------+
+               | - AthleteID      |           | - EventID        |
+               | - TeamID         |           | - TeamID         |
+               | - Position       |           | - Place          |
+               +-------------------+           +-------------------+
+
+
+In questo schema, Athlete rappresenta un atleta che partecipa alle gare, con informazioni come AthleteID,
+ FirstName, LastName e Birthdate. Team rappresenta una squadra sportiva, con informazioni come TeamID, TeamName, CoachName 
+e Establishment. Event rappresenta un evento sportivo, con informazioni come EventID, EventName, Date e Location.
+
+La tabella Plays tiene traccia della posizione di un atleta in una squadra per un evento specifico. La tabella Participates tiene 
+traccia della partecipazione di una squadra a un evento specifico e del loro posizionamento.
+
+
+Tabella Atleti:
+
+ID atleta (chiave primaria)
+Nome
+Cognome
+Data di nascita
+Sesso
+Nazione
+Società sportiva
+
+
+Tabella Gare:
+ID gara (chiave primaria)
+Nome gara
+Luogo
+Data
+Tipo di sport
+
+
+Tabella Risultati:
+
+ID risultato (chiave primaria)
+ID atleta (chiave esterna alla tabella Atleti)
+ID gara (chiave esterna alla tabella Gare)
+Tempo o punteggio ottenuti
+Posizione finale
+
+Questa struttura del database ti permette di registrare informazioni sugli atleti, sulle gare e sui risultati ottenuti in gara. 
+Inoltre, grazie all'utilizzo di chiavi esterne, è possibile creare relazioni tra le tabelle e ottenere informazioni più dettagliate 
+sui singoli atleti e sulle gare.
+
+Nota: Questa è una struttura di base per la gestione di gare sportive di atleti. Potresti avere bisogno di apportare modifiche in base 
+alle tue esigenze specifiche.
+
+Legenda:
+
+Una "Gara" è organizzata in una "Location".
+Una "Gara" ha un "Tipo di Sport" associato.
+Un "Atleta" partecipa a una "Gara" come "Partecipante".
+Un "Partecipante" ha una "Performance" in una "Gara".
+Una "Performance" è valutata da un certo numero di "Giudici".
+Un "Giudice" valuta diverse "Performance".
+
+Questo schema ER mostra come le diverse entità sono correlate tra loro. Ad esempio, una gara può avere più partecipanti e un atleta può 
+partecipare a più gare. Inoltre, una performance di un partecipante in una gara può essere valutata da più giudici.
+
+
+CREATE TABLE evento (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  luogo VARCHAR(255) NOT NULL,
+  data_ora DATETIME NOT NULL,
+  tipo_sport VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE biglietto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  evento_id INT NOT NULL,
+  prezzo DECIMAL(10, 2) NOT NULL,
+  settore VARCHAR(255) NOT NULL,
+  FOREIGN KEY (evento_id) REFERENCES evento(id)
+);
+
+CREATE TABLE cliente (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  telefono VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE acquisto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cliente_id INT NOT NULL,
+  biglietto_id INT NOT NULL,
+  data_ora DATETIME NOT NULL,
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id),
+  FOREIGN KEY (biglietto_id) REFERENCES biglietto(id)
+);
+
+
+Entità 
+-------------------
+Classifica	/	
+Atleta	/
+Team		/
+Gara		/
+Performance	/
+Giudice	/
+Location	/
+Biglietto	/
+Utente	/
