@@ -122,3 +122,27 @@ Giudice	/
 Location	/
 Biglietto	/
 Utente	/
+
+Iscrivere un team alla gara 
+Modificare i dati di un team già iscritto alla gara
+Modificare i team a quelli seguiti da un coach
+Conteggiare il numero di partecipanti ad una gara in base al numero di team che prendono parte
+Visualizzare il posizionamento in classifica di un team 
+Modificare il contatto di un gidice della gara
+Modificare il settore a cui si firerisce il biglietto(cambiare il biglietto)   
+
+Aggiunta di dati: è possibile aggiungere nuovi eventi sportivi al database, inclusi dettagli come la data dell'evento, la posizione, il tipo di evento e altri dettagli pertinenti.
+
+Modifica dei dati: è possibile modificare i dati esistenti nel database, come ad esempio la modifica della data dell'evento, la posizione o altri dettagli relativi all'evento.
+
+Eliminazione dei dati: è possibile eliminare eventi sportivi dal database, ad esempio se un evento è stato cancellato o se non è più pertinente.
+
+Aggiunta di nuove tabelle: è possibile aggiungere nuove tabelle al database, ad esempio una tabella che elenca gli atleti che parteciperanno all'evento.
+
+Modifica delle tabelle esistenti: è possibile modificare le tabelle esistenti, ad esempio per aggiungere nuove colonne o campi.
+
+Aggiornamento dei dati: è possibile aggiornare i dati esistenti nel database, ad esempio per modificare le informazioni di contatto di un atleta o per aggiornare i punteggi di un evento.
+
+Creazione di query personalizzate: è possibile creare query personalizzate per recuperare informazioni specifiche dal database, ad esempio per visualizzare tutti gli eventi sportivi in una determinata posizione o per elencare gli atleti che parteciperanno a un determinato evento.
+
+Backup e ripristino: è possibile eseguire operazioni di backup e ripristino del database, ad esempio per salvare una copia del database in caso di guasto del sistema o per ripristinare il database a una versione precedente in caso di errore.
