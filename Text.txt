@@ -1,5 +1,15 @@
-Gara (citta, 
-Biglietto (prezzo,
+
+
+1.	Iscrivere un team alla gara ;
+2.	Modificare i dati di un team già iscritto alla gara ;
+3.	Modificare i team seguiti da un coach ;
+4.	Conteggiare il numero di partecipanti ad una gara ;
+5.	Visualizzare il posizionamento in classifica di un team ;
+6.	Modificare i dati di un giudice di gara;
+7.	Modificare il prezzo ed il settore a cui si riferisce il biglietto(cambiare il biglietto) ;
+8.	Calcolare il punteggio complessivo di un team a fine gara;
+
+
 
 +---------------+           +-------------------+           +--------------+
 |     Athlete   |           |      Team         |           |    Event     |
