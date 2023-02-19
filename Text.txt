@@ -1,4 +1,5 @@
-
+Conteggio del numero di team iscritti ad una gara: SELECT COUNT(*) FROM Squadre WHERE ID_Competizione = [ID_Competizione]
+Conteggio del numero di biglietti venduti per ogni settore: SELECT ID_Settore, COUNT(*) FROM Biglietti GROUP BY ID_Settore
 
 1.	Iscrivere un team alla gara ;
 2.	Modificare i dati di un team già iscritto alla gara ;
