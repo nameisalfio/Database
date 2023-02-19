@@ -24,10 +24,15 @@ CREATE TABLE IF NOT EXISTS `database`.`Gara` (
   `num_partecipanti` BIGINT NULL DEFAULT NULL,
   `nome_gara` VARCHAR(10) NULL DEFAULT NULL,
   `categoria` VARCHAR(15) NULL DEFAULT NULL,
-  `id_classifica` INT NULL DEFAULT NULL,
+  /*`id_classifica` INT NULL DEFAULT NULL,*/
   `id_giudice` INT NULL DEFAULT NULL,
   `id_location` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  /*CONSTRAINT `id_classifica`
+    FOREIGN KEY (`id_classifica`)
+    REFERENCES `database`.`Classifica` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,*/
   CONSTRAINT `id_giudice`
     FOREIGN KEY (`id_giudice`)
     REFERENCES `database`.`Giudice` (`id`)
