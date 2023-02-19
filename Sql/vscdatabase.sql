@@ -213,3 +213,93 @@ CREATE TABLE IF NOT EXISTS `database`.`Vautazione` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = UTF8MB4;
+
+
+CREATE TRIGGER `performance_insert_trigger` 
+AFTER INSERT ON `performance` 
+FOR EACH ROW 
+BEGIN
+    DECLARE punti INT;
+    SELECT COUNT(*) INTO punti 
+    FROM Performance 
+    WHERE gara = NEW.gara AND progressivo <= NEW.progressivo AND id_atleta = NEW.id_atleta;
+		UPDATE Classifica 
+		SET punti = punti + punti 
+		WHERE id = (SELECT id_classifica 
+					FROM Gara 
+					WHERE id = NEW.gara);
+END
+
+
+
+CREATE TRIGGER `atleta_delete_trigger` 
+BEFORE DELETE ON `Atleta`
+FOR EACH ROW
+BEGIN
+    DECLARE partecipazioni INT;
+    SELECT COUNT(*) INTO partecipazioni FROM Performance WHERE id_atleta = OLD.id;
+    IF partecipazioni > 0 THEN
+        SIGNAL SQLSTATE '45000' 
+            SET MESSAGE_TEXT = 'Impossibile eliminare l''atleta perché ha partecipato ad almeno una gara';
+    END IF;
+END
+
+
+
+CREATE TRIGGER `team_insert_trigger` 
+BEFORE DELETE ON `Team`
+FOR EACH ROW
+BEGIN
+    -- incrementa il contatore di team iscritti alla gara corrente
+    UPDATE gara_attuale
+    SET num_team_iscritti = num_team_iscritti + 1;
+END;
+
+
+CREATE TRIGGER `coach_update_trigger` 
+AFTER UPDATE ON Team
+FOR EACH ROW
+BEGIN
+    -- controlla se il nuovo allenatore allena già un altro team
+    DECLARE num_team_allenati INT;
+    SELECT COUNT(*) INTO num_team_allenati 
+    FROM Team 
+    WHERE Coach.id = NEW.Coach.id;
+    
+    -- se il nuovo allenatore allena meno di due team, aggiorna la tabella degli allenatori
+    IF num_team_allenati < 2 THEN
+        UPDATE allenatori 
+        SET num_team_allenati = num_team_allenati + 1 
+        WHERE id = NEW.Coach.id;
+    END IF;
+END;
+
+
+
+CREATE TRIGGER `update_classifica_trigger`
+AFTER INSERT ON `Collocazione` FOR EACH ROW
+BEGIN
+    UPDATE Gara
+    SET num_partecipanti = num_partecipanti + 1
+    WHERE id = (SELECT id_gara FROM Gara WHERE id_classifica = NEW.classifica);
+    
+    UPDATE Classifica
+    SET punti = (
+        SELECT SUM(punti)
+        FROM (
+            SELECT COUNT(*) AS punti
+            FROM Collocazione c
+            JOIN Team t ON c.team = t.id
+            JOIN Performance p ON t.id = p.id_team AND (SELECT id_gara FROM Gara WHERE id_classifica = c.classifica) = p.gara
+            WHERE c.classifica = NEW.classifica AND p.progressivo = 1
+            GROUP BY t.id
+        ) AS punti_per_team
+    )
+    WHERE categoria = (SELECT categoria FROM Gara WHERE id_classifica = NEW.classifica)
+    AND id_gara = (SELECT id_gara FROM Gara WHERE id_classifica = NEW.classifica);
+    
+    UPDATE Team
+    SET id_coach = (SELECT id_coach FROM Team WHERE id = NEW.team)
+    WHERE id = NEW.team;
+END;
+
