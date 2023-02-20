@@ -1,3 +1,18 @@
+sudo apt-get install libxml2-utils
+dpkg -s libxml2-utils
+Una volta che hai verificato che il pacchetto è installato, puoi eseguire il file XML utilizzando il comando seguente:
+
+css
+Copy code
+xmllint --noout <nome_file>.xml
+Ad esempio, se il tuo file XML si chiama my_file.xml, puoi eseguirlo digitando:
+
+css
+Copy code
+xmllint --noout my_file.xml
+Il parametro --noout dice a xmllint di non produrre alcun output, ma solo di verificare se il file è ben formato e valido.
+
+
 Conteggio del numero di team iscritti ad una gara: SELECT COUNT(*) FROM Squadre WHERE ID_Competizione = [ID_Competizione]
 Conteggio del numero di biglietti venduti per ogni settore: SELECT ID_Settore, COUNT(*) FROM Biglietti GROUP BY ID_Settore
 

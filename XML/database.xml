@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+  <table name="Classifica">
+    <column name="id" type="integer"/>
+    <column name="categoria" type="text"/>
+    <column name="punti" type="integer"/>
+    <column name="id_gara" type="integer"/>
+  </table>
+  <table name="Gara">
+    <column name="id" type="integer"/>
+    <column name="num_partecipanti" type="integer"/>
+    <column name="nome_gara" type="text"/>
+    <column name="categoria" type="text"/>
+    <column name="id_classifica" type="integer"/>
+    <column name="id_location" type="integer"/>
+  </table>
+  <table name="Collocazione">
+    <column name="team" type="integer"/>
+    <column name="classifica" type="integer"/>
+    <column name="posizione" type="integer"/>
+  </table>
+  <table name="Team">
+    <column name="id" type="integer"/>
+    <column name="nome_team" type="text"/>
+    <column name="nazione" type="text"/>
+    <column name="id_coach" type="integer"/>
+  </table>
+  <table name="Coach">
+    <column name="id" type="integer"/>
+    <column name="nome" type="text"/>
+    <column name="cognome" type="text"/>
+    <column name="contatto" type="text"/>
+  </table>
+  <table name="Atleta">
+    <column name="id" type="integer"/>
+    <column name="nome" type="text"/>
+    <column name="cognome" type="text"/>
+    <column name="sesso" type="text"/>
+    <column name="nazione" type="text"/>
+    <column name="id_team" type="integer"/>
+    <column name="data_nascita" type="date"/>
+    <column name="tipo_sport" type="text"/>
+  </table>
+  <table name="Performance">
+    <column name="id" type="integer"/>
+    <column name="progressivo" type="integer"/>
+    <column name="gara" type="integer"/>
+    <column name="id_atleta" type="integer"/>
+  </table>
+  <table name="Valutazione">
+    <column name="id_performance" type="integer"/>
+    <column name="giudice" type="integer"/>
+    <column name="progressivo" type="integer"/>
+  </table>
+  <table name="Giudice">
+    <column name="id" type="integer"/>
+    <column name="progressivo" type="integer"/>
+    <column name="contatto" type="text"/>
+  </table>
+  <table name="Location">
+    <column name="id" type="integer"/>
+    <column name="settore" type="text"/>
+    <column name="team_di_casa" type="integer"/>
+    <column name="città" type="text"/>
+  </table>
+  <table name="Biglietto">
+    <column name="codice" type="varchar(255)"/>
+    <column name="biglietti_venduti" type="int"/>
+    <column name="settore" type="varchar(255)"/>
+    <column name="data_emissione" type="date"/>
+    <column name="costo" type="decimal(10,2)"/>
+    <column name="location" type="int"/>
+    <column name="id_spettatore" type="int"/>
+  </table>
+
+  <table name="Spettatore">
+    <column name="id" type="int"/>
+    <column name="nome" type="varchar(255)"/>
+    <column name="cognome" type="varchar(255)"/>
+    <column name="contatto" type="varchar(255)"/>
+  </table>
+</database>
