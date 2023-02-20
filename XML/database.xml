@@ -5,6 +5,14 @@
     <column name="categoria" type="text"/>
     <column name="punti" type="integer"/>
     <column name="id_gara" type="integer"/>
+
+    <row>
+      <id>1</id>
+      <categoria>Calcio</categoria>
+      <punti>10</punti>
+      <id_gara>100</id_gara>
+    </row>
+
   </table>
   <table name="Gara">
     <column name="id" type="integer"/>
@@ -72,7 +80,6 @@
     <column name="location" type="int"/>
     <column name="id_spettatore" type="int"/>
   </table>
-
   <table name="Spettatore">
     <column name="id" type="int"/>
     <column name="nome" type="varchar(255)"/>

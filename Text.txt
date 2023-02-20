@@ -1,174 +1,31 @@
-sudo apt-get install libxml2-utils
-dpkg -s libxml2-utils
-Una volta che hai verificato che il pacchetto è installato, puoi eseguire il file XML utilizzando il comando seguente:
+Restituire tutti gli atleti che hanno partecipato ad almeno una gara di categoria "nuoto" con il relativo id:
 
-css
-Copy code
-xmllint --noout <nome_file>.xml
-Ad esempio, se il tuo file XML si chiama my_file.xml, puoi eseguirlo digitando:
-
-css
-Copy code
-xmllint --noout my_file.xml
-Il parametro --noout dice a xmllint di non produrre alcun output, ma solo di verificare se il file è ben formato e valido.
+for $atleta in //Atleta
+for $gara in //Gara
+where $atleta/@id = $gara//Performance/@id_atleta and $gara/@categoria = 'nuoto'
+return <Atleta id="{$atleta/@id}">{data($atleta/@nome)} {data($atleta/@cognome)}</Atleta>
 
 
-Conteggio del numero di team iscritti ad una gara: SELECT COUNT(*) FROM Squadre WHERE ID_Competizione = [ID_Competizione]
-Conteggio del numero di biglietti venduti per ogni settore: SELECT ID_Settore, COUNT(*) FROM Biglietti GROUP BY ID_Settore
+Restituire il nome del team che ha ottenuto il punteggio più alto in ogni categoria:
 
-1.	Iscrivere un team alla gara ;
-2.	Modificare i dati di un team già iscritto alla gara ;
-3.	Modificare i team seguiti da un coach ;
-4.	Conteggiare il numero di partecipanti ad una gara ;
-5.	Visualizzare il posizionamento in classifica di un team ;
-6.	Modificare i dati di un giudice di gara;
-7.	Modificare il prezzo ed il settore a cui si riferisce il biglietto(cambiare il biglietto) ;
-8.	Calcolare il punteggio complessivo di un team a fine gara;
-
-
-
-+---------------+           +-------------------+           +--------------+
-|     Athlete   |           |      Team         |           |    Event     |
-+---------------+           +-------------------+           +--------------+
-| - AthleteID   |           | - TeamID          |           | - EventID    |
-| - FirstName   |           | - TeamName        |           | - EventName  |
-| - LastName    |           | - CoachName       |           | - Date       |
-| - Birthdate   |           | - Establishment   |           | - Location   |
-+---------------+           +-------------------+           +--------------+
-                        1                                  N
-                        |                                  |
-                        |                                  |
-                        |                                  |
-                        V                                  V
-               +-------------------+           +-------------------+
-               |      Plays       |           |   Participates   |
-               +-------------------+           +-------------------+
-               | - AthleteID      |           | - EventID        |
-               | - TeamID         |           | - TeamID         |
-               | - Position       |           | - Place          |
-               +-------------------+           +-------------------+
+for $gara in //Gara
+for $classifica in //Classifica
+for $collocazione in //Collocazione
+for $team in //Team
+where $gara/@id = $collocazione/@classifica and $classifica/@id = $collocazione/@classifica and $team/@id = $collocazione/@team and $gara/@categoria = $classifica/@categoria
+group by $gara/@categoria
+return <Categoria nome="{$gara/@categoria}">
+        <Team>{data($team/@nome_team)}</Team>
+        <Punti>{sum($classifica[@id = $collocazione/@classifica]/@punti)}</Punti>
+       </Categoria>
 
 
-In questo schema, Athlete rappresenta un atleta che partecipa alle gare, con informazioni come AthleteID,
- FirstName, LastName e Birthdate. Team rappresenta una squadra sportiva, con informazioni come TeamID, TeamName, CoachName 
-e Establishment. Event rappresenta un evento sportivo, con informazioni come EventID, EventName, Date e Location.
+Restituire il nome e il cognome di tutti gli atleti di sesso femminile che hanno partecipato ad almeno una gara di categoria "atletica" e che sono nati dopo il 1990:
 
-La tabella Plays tiene traccia della posizione di un atleta in una squadra per un evento specifico. La tabella Participates tiene 
-traccia della partecipazione di una squadra a un evento specifico e del loro posizionamento.
-
-
-Tabella Atleti:
-
-ID atleta (chiave primaria)
-Nome
-Cognome
-Data di nascita
-Sesso
-Nazione
-Società sportiva
-
-
-Tabella Gare:
-ID gara (chiave primaria)
-Nome gara
-Luogo
-Data
-Tipo di sport
-
-
-Tabella Risultati:
-
-ID risultato (chiave primaria)
-ID atleta (chiave esterna alla tabella Atleti)
-ID gara (chiave esterna alla tabella Gare)
-Tempo o punteggio ottenuti
-Posizione finale
-
-Questa struttura del database ti permette di registrare informazioni sugli atleti, sulle gare e sui risultati ottenuti in gara. 
-Inoltre, grazie all'utilizzo di chiavi esterne, è possibile creare relazioni tra le tabelle e ottenere informazioni più dettagliate 
-sui singoli atleti e sulle gare.
-
-Nota: Questa è una struttura di base per la gestione di gare sportive di atleti. Potresti avere bisogno di apportare modifiche in base 
-alle tue esigenze specifiche.
-
-Legenda:
-
-Una "Gara" è organizzata in una "Location".
-Una "Gara" ha un "Tipo di Sport" associato.
-Un "Atleta" partecipa a una "Gara" come "Partecipante".
-Un "Partecipante" ha una "Performance" in una "Gara".
-Una "Performance" è valutata da un certo numero di "Giudici".
-Un "Giudice" valuta diverse "Performance".
-
-Questo schema ER mostra come le diverse entità sono correlate tra loro. Ad esempio, una gara può avere più partecipanti e un atleta può 
-partecipare a più gare. Inoltre, una performance di un partecipante in una gara può essere valutata da più giudici.
-
-
-CREATE TABLE evento (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(255) NOT NULL,
-  luogo VARCHAR(255) NOT NULL,
-  data_ora DATETIME NOT NULL,
-  tipo_sport VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE biglietto (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  evento_id INT NOT NULL,
-  prezzo DECIMAL(10, 2) NOT NULL,
-  settore VARCHAR(255) NOT NULL,
-  FOREIGN KEY (evento_id) REFERENCES evento(id)
-);
-
-CREATE TABLE cliente (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  telefono VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE acquisto (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  cliente_id INT NOT NULL,
-  biglietto_id INT NOT NULL,
-  data_ora DATETIME NOT NULL,
-  FOREIGN KEY (cliente_id) REFERENCES cliente(id),
-  FOREIGN KEY (biglietto_id) REFERENCES biglietto(id)
-);
-
-
-Entità 
--------------------
-Classifica	/	
-Atleta	/
-Team		/
-Gara		/
-Performance	/
-Giudice	/
-Location	/
-Biglietto	/
-Utente	/
-
-Iscrivere un team alla gara 
-Modificare i dati di un team già iscritto alla gara
-Modificare i team a quelli seguiti da un coach
-Conteggiare il numero di partecipanti ad una gara in base al numero di team che prendono parte
-Visualizzare il posizionamento in classifica di un team 
-Modificare il contatto di un gidice della gara
-Modificare il settore a cui si firerisce il biglietto(cambiare il biglietto)   
-
-Aggiunta di dati: è possibile aggiungere nuovi eventi sportivi al database, inclusi dettagli come la data dell'evento, la posizione, il tipo di evento e altri dettagli pertinenti.
-
-Modifica dei dati: è possibile modificare i dati esistenti nel database, come ad esempio la modifica della data dell'evento, la posizione o altri dettagli relativi all'evento.
-
-Eliminazione dei dati: è possibile eliminare eventi sportivi dal database, ad esempio se un evento è stato cancellato o se non è più pertinente.
-
-Aggiunta di nuove tabelle: è possibile aggiungere nuove tabelle al database, ad esempio una tabella che elenca gli atleti che parteciperanno all'evento.
-
-Modifica delle tabelle esistenti: è possibile modificare le tabelle esistenti, ad esempio per aggiungere nuove colonne o campi.
-
-Aggiornamento dei dati: è possibile aggiornare i dati esistenti nel database, ad esempio per modificare le informazioni di contatto di un atleta o per aggiornare i punteggi di un evento.
-
-Creazione di query personalizzate: è possibile creare query personalizzate per recuperare informazioni specifiche dal database, ad esempio per visualizzare tutti gli eventi sportivi in una determinata posizione o per elencare gli atleti che parteciperanno a un determinato evento.
-
-Backup e ripristino: è possibile eseguire operazioni di backup e ripristino del database, ad esempio per salvare una copia del database in caso di guasto del sistema o per ripristinare il database a una versione precedente in caso di errore.
+for $atleta in //Atleta
+for $gara in //Gara
+where $atleta/@id = $gara//Performance/@id_atleta and $gara/@categoria = 'atletica' and $atleta/@sesso = 'f' and year-from-date($atleta/@data_nascita) > 1990
+return <Atleta>
+        <Nome>{data($atleta/@nome)}</Nome>
+        <Cognome>{data($atleta/@cognome)}</Cognome>
+       </Atleta>
