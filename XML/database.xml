@@ -5,13 +5,36 @@
     <column name="categoria" type="text"/>
     <column name="punti" type="integer"/>
     <column name="id_gara" type="integer"/>
-
-    <row>
+    <record>
       <id>1</id>
-      <categoria>Calcio</categoria>
+      <categoria>Categoria1</categoria>
       <punti>10</punti>
       <id_gara>100</id_gara>
-    </row>
+    </record>
+    <record>
+      <id>2</id>
+      <categoria>Categoria2</categoria>
+      <punti>20</punti>
+      <id_gara>101</id_gara>
+    </record>
+    <record>
+      <id>3</id>
+      <categoria>Categoria3</categoria>
+      <punti>15</punti>
+      <id_gara>102</id_gara>
+    </record>
+    <record>
+      <id>4</id>
+      <categoria>Categoria4</categoria>
+      <punti>8</punti>
+      <id_gara>103</id_gara>
+    </record>
+    <record>
+      <id>5</id>
+      <categoria>Categoria5</categoria>
+      <punti>12</punti>
+      <id_gara>104</id_gara>
+    </record>
 
   </table>
   <table name="Gara">
@@ -21,23 +44,148 @@
     <column name="categoria" type="text"/>
     <column name="id_classifica" type="integer"/>
     <column name="id_location" type="integer"/>
+    <record>
+      <id>1</id>
+      <num_partecipanti>10</num_partecipanti>
+      <nome_gara>Gara1</nome_gara>
+      <categoria>Categoria1</categoria>
+      <id_classifica>100</id_classifica>
+      <id_location>200</id_location>
+    </record>
+    <record>
+      <id>2</id>
+      <num_partecipanti>20</num_partecipanti>
+      <nome_gara>Gara2</nome_gara>
+      <categoria>Categoria2</categoria>
+      <id_classifica>101</id_classifica>
+      <id_location>201</id_location>
+    </record>
+    <record>
+      <id>3</id>
+      <num_partecipanti>15</num_partecipanti>
+      <nome_gara>Gara3</nome_gara>
+      <categoria>Categoria3</categoria>
+      <id_classifica>102</id_classifica>
+      <id_location>202</id_location>
+    </record>
+    <record>
+      <id>4</id>
+      <num_partecipanti>8</num_partecipanti>
+      <nome_gara>Gara4</nome_gara>
+      <categoria>Categoria4</categoria>
+      <id_classifica>103</id_classifica>
+      <id_location>203</id_location>
+    </record>
+    <record>
+      <id>5</id>
+      <num_partecipanti>12</num_partecipanti>
+      <nome_gara>Gara5</nome_gara>
+      <categoria>Categoria5</categoria>
+      <id_classifica>104</id_classifica>
+      <id_location>204</id_location>
+    </record>
   </table>
   <table name="Collocazione">
     <column name="team" type="integer"/>
     <column name="classifica" type="integer"/>
     <column name="posizione" type="integer"/>
+    <row>
+      <team>1</team>
+      <classifica>1</classifica>
+      <posizione>1</posizione>
+    </row>
+    <row>
+      <team>2</team>
+      <classifica>1</classifica>
+      <posizione>2</posizione>
+    </row>
+    <row>
+      <team>3</team>
+      <classifica>2</classifica>
+      <posizione>1</posizione>
+    </row>
+    <row>
+      <team>4</team>
+      <classifica>2</classifica>
+      <posizione>2</posizione>
+    </row>
+    <row>
+      <team>5</team>
+      <classifica>2</classifica>
+      <posizione>3</posizione>
+    </row>
   </table>
   <table name="Team">
     <column name="id" type="integer"/>
     <column name="nome_team" type="text"/>
     <column name="nazione" type="text"/>
     <column name="id_coach" type="integer"/>
+    <row>
+      <id>1</id>
+      <nome_team>Real Madrid</nome_team>
+      <nazione>Spagna</nazione>
+      <id_coach>1</id_coach>
+    </row>
+    <row>
+      <id>2</id>
+      <nome_team>Barcellona</nome_team>
+      <nazione>Spagna</nazione>
+      <id_coach>2</id_coach>
+    </row>
+    <row>
+      <id>3</id>
+      <nome_team>Juventus</nome_team>
+      <nazione>Italia</nazione>
+      <id_coach>3</id_coach>
+    </row>
+    <row>
+      <id>4</id>
+      <nome_team>Manchester United</nome_team>
+      <nazione>Inghilterra</nazione>
+      <id_coach>4</id_coach>
+    </row>
+    <row>
+      <id>5</id>
+      <nome_team>Paris Saint-Germain</nome_team>
+      <nazione>Francia</nazione>
+      <id_coach>5</id_coach>
+    </row>
   </table>
   <table name="Coach">
     <column name="id" type="integer"/>
     <column name="nome" type="text"/>
     <column name="cognome" type="text"/>
     <column name="contatto" type="text"/>
+    <row>
+      <id>1</id>
+      <nome>Carlo</nome>
+      <cognome>Ancelotti</cognome>
+      <contatto>carlo.ancelotti@gmail.com</contatto>
+    </row>
+    <row>
+      <id>2</id>
+      <nome>Pep</nome>
+      <cognome>Guardiola</cognome>
+      <contatto>pep.guardiola@manchestercity.com</contatto>
+    </row>
+    <row>
+      <id>3</id>
+      <nome>Max</nome>
+      <cognome>Allegri</cognome>
+      <contatto>max.allegri@juventus.com</contatto>
+    </row>
+    <row>
+      <id>4</id>
+      <nome>Ole Gunnar</nome>
+      <cognome>Solskjaer</cognome>
+      <contatto>olesolskjaer@manchesterunited.com</contatto>
+    </row>
+    <row>
+      <id>5</id>
+      <nome>Mauricio</nome>
+      <cognome>Pochettino</cognome>
+      <contatto>mauricio.pochettino@psg.com</contatto>
+    </row>
   </table>
   <table name="Atleta">
     <column name="id" type="integer"/>
@@ -48,28 +196,188 @@
     <column name="id_team" type="integer"/>
     <column name="data_nascita" type="date"/>
     <column name="tipo_sport" type="text"/>
+    <record>
+      <value column="id">1</value>
+      <value column="nome">Marco</value>
+      <value column="cognome">Rossi</value>
+      <value column="sesso">M</value>
+      <value column="nazione">Italia</value>
+      <value column="id_team">1</value>
+      <value column="data_nascita">1990-05-20</value>
+      <value column="tipo_sport">Calcio</value>
+    </record>
+    <record>
+      <value column="id">2</value>
+      <value column="nome">Luca</value>
+      <value column="cognome">Bianchi</value>
+      <value column="sesso">M</value>
+      <value column="nazione">Italia</value>
+      <value column="id_team">2</value>
+      <value column="data_nascita">1992-08-10</value>
+      <value column="tipo_sport">Nuoto</value>
+    </record>
+    <record>
+      <value column="id">3</value>
+      <value column="nome">Martina</value>
+      <value column="cognome">Verdi</value>
+      <value column="sesso">F</value>
+      <value column="nazione">Italia</value>
+      <value column="id_team">1</value>
+      <value column="data_nascita">1995-03-15</value>
+      <value column="tipo_sport">Calcio</value>
+    </record>
+    <record>
+      <value column="id">4</value>
+      <value column="nome">Paolo</value>
+      <value column="cognome">Russo</value>
+      <value column="sesso">M</value>
+      <value column="nazione">Italia</value>
+      <value column="id_team">3</value>
+      <value column="data_nascita">1987-11-28</value>
+      <value column="tipo_sport">Basket</value>
+    </record>
+    <record>
+      <value column="id">5</value>
+      <value column="nome">Francesca</value>
+      <value column="cognome">Gialli</value>
+      <value column="sesso">F</value>
+      <value column="nazione">Italia</value>
+      <value column="id_team">2</value>
+      <value column="data_nascita">1998-07-03</value>
+      <value column="tipo_sport">Nuoto</value>
+    </record>
   </table>
   <table name="Performance">
     <column name="id" type="integer"/>
     <column name="progressivo" type="integer"/>
     <column name="gara" type="integer"/>
     <column name="id_atleta" type="integer"/>
+    <record>
+      <value column="id">1</value>
+      <value column="progressivo">1</value>
+      <value column="gara">100</value>
+      <value column="id_atleta">10</value>
+    </record>
+    <record>
+      <value column="id">2</value>
+      <value column="progressivo">2</value>
+      <value column="gara">100</value>
+      <value column="id_atleta">11</value>
+    </record>
+    <record>
+      <value column="id">3</value>
+      <value column="progressivo">1</value>
+      <value column="gara">200</value>
+      <value column="id_atleta">12</value>
+    </record>
+    <record>
+      <value column="id">4</value>
+      <value column="progressivo">2</value>
+      <value column="gara">200</value>
+      <value column="id_atleta">13</value>
+    </record>
+    <record>
+      <value column="id">5</value>
+      <value column="progressivo">1</value>
+      <value column="gara">400</value>
+      <value column="id_atleta">14</value>
+    </record>
   </table>
   <table name="Valutazione">
     <column name="id_performance" type="integer"/>
     <column name="giudice" type="integer"/>
     <column name="progressivo" type="integer"/>
+    <record>
+      <id_performance>1</id_performance>
+      <giudice>1</giudice>
+      <progressivo>1</progressivo>
+    </record>
+    <record>
+      <id_performance>1</id_performance>
+      <giudice>2</giudice>
+      <progressivo>2</progressivo>
+    </record>
+    <record>
+      <id_performance>2</id_performance>
+      <giudice>1</giudice>
+      <progressivo>1</progressivo>
+    </record>
+    <record>
+      <id_performance>2</id_performance>
+      <giudice>2</giudice>
+      <progressivo>2</progressivo>
+    </record>
+    <record>
+      <id_performance>3</id_performance>
+      <giudice>1</giudice>
+      <progressivo>1</progressivo>
+    </record>
   </table>
   <table name="Giudice">
     <column name="id" type="integer"/>
     <column name="progressivo" type="integer"/>
     <column name="contatto" type="text"/>
+    <row>
+      <col name="id">1</col>
+      <col name="progressivo">1</col>
+      <col name="contatto">giudice1@example.com</col>
+    </row>
+    <row>
+      <col name="id">2</col>
+      <col name="progressivo">2</col>
+      <col name="contatto">giudice2@example.com</col>
+    </row>
+    <row>
+      <col name="id">3</col>
+      <col name="progressivo">3</col>
+      <col name="contatto">giudice3@example.com</col>
+    </row>
+    <row>
+      <col name="id">4</col>
+      <col name="progressivo">4</col>
+      <col name="contatto">giudice4@example.com</col>
+    </row>
+    <row>
+      <col name="id">5</col>
+      <col name="progressivo">5</col>
+      <col name="contatto">giudice5@example.com</col>
+    </row>
   </table>
   <table name="Location">
     <column name="id" type="integer"/>
     <column name="settore" type="text"/>
     <column name="team_di_casa" type="integer"/>
     <column name="città" type="text"/>
+    <row>
+      <col name="id">1</col>
+      <col name="settore">Curva Sud</col>
+      <col name="team_di_casa">3</col>
+      <col name="città">Roma</col>
+    </row>
+    <row>
+      <col name="id">2</col>
+      <col name="settore">Tribuna Ovest</col>
+      <col name="team_di_casa">2</col>
+      <col name="città">Milano</col>
+    </row>
+    <row>
+      <col name="id">3</col>
+      <col name="settore">Tribuna Est</col>
+      <col name="team_di_casa">1</col>
+      <col name="città">Napoli</col>
+    </row>
+    <row>
+      <col name="id">4</col>
+      <col name="settore">Curva Nord</col>
+      <col name="team_di_casa">4</col>
+      <col name="città">Firenze</col>
+    </row>
+    <row>
+      <col name="id">5</col>
+      <col name="settore">Distinti</col>
+      <col name="team_di_casa">5</col>
+      <col name="città">Torino</col>
+    </row>
   </table>
   <table name="Biglietto">
     <column name="codice" type="varchar(255)"/>
@@ -79,11 +387,86 @@
     <column name="costo" type="decimal(10,2)"/>
     <column name="location" type="int"/>
     <column name="id_spettatore" type="int"/>
+    <row>
+      <col name="codice">B0001</col>
+      <col name="biglietti_venduti">2</col>
+      <col name="settore">Tribuna centrale</col>
+      <col name="data_emissione">2022-05-15</col>
+      <col name="costo">100.00</col>
+      <col name="location">1</col>
+      <col name="id_spettatore">101</col>
+    </row>
+    <row>
+      <col name="codice">B0002</col>
+      <col name="biglietti_venduti">1</col>
+      <col name="settore">Curva sud</col>
+      <col name="data_emissione">2022-06-01</col>
+      <col name="costo">50.00</col>
+      <col name="location">2</col>
+      <col name="id_spettatore">102</col>
+    </row>
+    <row>
+      <col name="codice">B0003</col>
+      <col name="biglietti_venduti">4</col>
+      <col name="settore">Distinti nord</col>
+      <col name="data_emissione">2022-07-10</col>
+      <col name="costo">80.00</col>
+      <col name="location">3</col>
+      <col name="id_spettatore">103</col>
+    </row>
+    <row>
+      <col name="codice">B0004</col>
+      <col name="biglietti_venduti">3</col>
+      <col name="settore">Tribuna est</col>
+      <col name="data_emissione">2022-08-15</col>
+      <col name="costo">120.00</col>
+      <col name="location">1</col>
+      <col name="id_spettatore">104</col>
+    </row>
+    <row>
+      <col name="codice">B0005</col>
+      <col name="biglietti_venduti">2</col>
+      <col name="settore">Curva nord</col>
+      <col name="data_emissione">2022-09-01</col>
+      <col name="costo">60.00</col>
+      <col name="location">2</col>
+      <col name="id_spettatore">105</col>
+    </row>
   </table>
   <table name="Spettatore">
     <column name="id" type="int"/>
     <column name="nome" type="varchar(255)"/>
     <column name="cognome" type="varchar(255)"/>
     <column name="contatto" type="varchar(255)"/>
+    <row>
+      <id>1</id>
+      <nome>Mario</nome>
+      <cognome>Rossi</cognome>
+      <contatto>mario.rossi@gmail.com</contatto>
+    </row>
+    <row>
+      <id>2</id>
+      <nome>Giulia</nome>
+      <cognome>Bianchi</cognome>
+      <contatto>giulia.bianchi@yahoo.com</contatto>
+    </row>
+    <row>
+      <id>3</id>
+      <nome>Luca</nome>
+      <cognome>Neri</cognome>
+      <contatto>luca.neri@gmail.com</contatto>
+    </row>
+    <row>
+      <id>4</id>
+      <nome>Marta</nome>
+      <cognome>Verdi</cognome>
+      <contatto>marta.verdi@hotmail.com</contatto>
+    </row>
+    <row>
+      <id>5</id>
+      <nome>Paolo</nome>
+      <cognome>Russo</cognome>
+      <contatto>paolo.russo@gmail.com</contatto>
+    </row>
   </table>
 </database>
